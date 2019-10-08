@@ -1,6 +1,8 @@
 <template>
     <div class="screen">
-        <div class="screen-card"></div>
+        <h2 class="screen-card">
+            {{ msg }}
+        </h2>
     </div>
 </template>
 
@@ -8,20 +10,21 @@
 export default {
     name: 'CalcScreen', 
     props: {
-        msg: String //value
+        msg: value
     }
 }
 
-//let value = '0';
+let value = '0';
 </script>
 
 <style scoped>
     .screen-card {
+        text-align: right;
         border: 1px solid black;
-        width: 100px;
-        margin: auto;
-        position: absolute;
+        border-radius: 3px;
+        width: 200px;
+        margin-top: 0;
         height: 30px;
-        z-index: 1;
+ 
     }
 </style>

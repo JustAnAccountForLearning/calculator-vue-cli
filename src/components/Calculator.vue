@@ -16,13 +16,16 @@ export default {
 
 <style scoped>
     .calc-card {
-        justify-content: center;
-        border: 1px solid black;
-        width: 120px;
-        height: 160px;
+        border: 1px solid rgb(100, 100, 100);
+        width: 240px;
+        height: 350px;
         position: absolute;
-        margin: auto;
         border-radius: 8px;
         box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+
+    .class {
+        text-align: center;
+        z-index: 0;
     }
 </style>
