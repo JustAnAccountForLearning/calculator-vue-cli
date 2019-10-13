@@ -2,7 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <span style="position: relative;">
-      <Calculator msg="Calculated Calculator"/>
+      <div class="calc-card"></div>
       <div id="screen-row">
         <CalcScreen msg="0"/>
       </div>
@@ -24,7 +24,7 @@
               <NumberButton number="6"/>
           </div>
           <div id="num-btn-row">
-              <NumberButton number="1" v-on:click="show"/>
+              <NumberButton number="1"/>
               <NumberButton number="2"/>
               <NumberButton number="3"/>
           </div>
@@ -57,20 +57,15 @@
 </template>
 
 <script defer>
-import Calculator from './components/Calculator.vue'
 import CalcScreen from './components/CalcScreen.vue'
 import NumberButton from './components/NumberButton.vue'
 
 export default {
   name: 'app',
   components: {
-    Calculator,
     CalcScreen,
     NumberButton
   }, 
-  show: function(event) {
-    
-  }
 }
 
 
@@ -116,4 +111,13 @@ export default {
   float: left;
   width: 51px;
 }
+
+.calc-card {
+        border: 1px solid rgb(100, 100, 100);
+        width: 240px;
+        height: 350px;
+        position: absolute;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
 </style>
