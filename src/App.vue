@@ -4,34 +4,34 @@
     <span style="position: relative;">
       <div class="calc-card"></div>
       <div id="screen-row">
-        <CalcScreen msg="0"/>
+        <CalcScreen :msg="print"/>
       </div>
       <div id="btn-row">
         <div id="num-btn-col">
           <div id="num-btn-row">
-              <NumberButton number="AC"/>
-              <NumberButton number="DEL"/>
-              <NumberButton number="+/-"/>
+              <NumberButton number="AC" @update="clearScreen()" />
+              <NumberButton number="DEL" @update="deleteDigit()" />
+              <NumberButton number="+/-" @update="invert()" />
           </div>
           <div id="num-btn-row">
-              <NumberButton number="7"/>
-              <NumberButton number="8"/>
-              <NumberButton number="9"/>
+              <NumberButton number="7" @update="updateScreen('7')" />
+              <NumberButton number="8" @update="updateScreen('8')" />
+              <NumberButton number="9" @update="updateScreen('9')" />
           </div>
           <div id="num-btn-row">
-              <NumberButton number="4"/>
-              <NumberButton number="5"/>
-              <NumberButton number="6"/>
+              <NumberButton number="4" @update="updateScreen('4')" />
+              <NumberButton number="5" @update="updateScreen('5')" />
+              <NumberButton number="6" @update="updateScreen('6')" />
           </div>
           <div id="num-btn-row">
-              <NumberButton number="1"/>
-              <NumberButton number="2"/>
-              <NumberButton number="3"/>
+              <NumberButton number="1" @update="updateScreen('1')" />
+              <NumberButton number="2" @update="updateScreen('2')" />
+              <NumberButton number="3" @update="updateScreen('3')" />
           </div>
           <div id="num-btn-row">
-              <NumberButton number="."/>
-              <NumberButton number="0"/>
-              <NumberButton number="00"/>
+              <NumberButton number="." @update="updateScreen('.')" />
+              <NumberButton number="0" @update="updateScreen('0')" />
+              <NumberButton number="00" @update="updateScreen('00')" />
           </div>
         </div>
         <div id="action-btn-col">
@@ -62,6 +62,41 @@ import NumberButton from './components/NumberButton.vue'
 
 export default {
   name: 'app',
+  data() {
+    return {
+      print: "",
+      xValue: "",
+      yValue: ""
+    }
+  },
+  methods: {
+    updateScreen: function(value) {
+      // Remove leading zeros
+      while (this.print.slice(0,1) == "0") {
+        this.print = this.print.slice(1, this.print.length);
+      }
+      this.print += value;
+    },
+    
+    clearScreen: function() {
+      this.print = "";
+    },
+    
+    deleteDigit: function() {
+      // Deletes the last digit.
+      this.print = this.print.slice(0, this.print.length - 1);
+    },
+    
+    invert: function() {
+      if (this.print.slice(0,1) == "-") {
+        this.print = this.print.slice(1, this.print.length);
+      }
+      else {
+        this.print = "-" + this.print;
+      }
+    },
+
+  },
   components: {
     CalcScreen,
     NumberButton

@@ -10,11 +10,9 @@
 export default {
     name: 'CalcScreen', 
     props: {
-        msg: value
+        msg: String
     }
 }
-
-let value = '0';
 </script>
 
 <style scoped>

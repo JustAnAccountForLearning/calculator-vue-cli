@@ -1,6 +1,6 @@
 <template>
     <div class="btn">
-        <button type="button" class="num-btn"> {{ number }} </button>
+        <button @click="$emit('update')" type="button" class="num-btn"> {{ number }} </button>
     </div>
 </template>
 
@@ -9,6 +9,9 @@ export default {
     name: 'NumberButton', 
     props: {
         number: String,
+    },
+    methods: {
+        
     }
 }
 </script>
