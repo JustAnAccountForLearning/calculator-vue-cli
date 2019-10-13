@@ -24,9 +24,12 @@ export default {
         margin: 3px;
         position: relative;
         float: left;
-        border-radius: 4px;
-        color: blue;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 16px;
+        color: rgba(0, 0, 165, 0.863);
         outline: 0;
+        box-shadow: inset 0 0 2px #3b3b3b;
     }
 
     .num-btn:hover {
