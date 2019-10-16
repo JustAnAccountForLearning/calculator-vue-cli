@@ -6,6 +6,7 @@
         <div id="screen-row">
           <CalcScreen :msg="print" :backgroundActive="screenColor" />
         </div>
+
         <div id="btn-row">
           <div id="num-btn-col">
             <div id="num-btn-row">
@@ -34,6 +35,7 @@
                 <NumberButton number="00" @update="updateScreen('00')" />
             </div>
           </div>
+
           <div id="action-btn-col">
             <div>
               <NumberButton number="+" @update="storeInitialData('+')" />
@@ -51,7 +53,7 @@
               <NumberButton number="=" @update="calculateResult()" />
             </div>
           </div>
-          </div>
+        </div>
       </div>
     </span>
   </div>
@@ -73,6 +75,8 @@ export default {
     }
   },
   methods: {
+    // Takes the input from the last button pressed and updates the show value
+    // Trims and limits shown digits
     updateScreen: function(value) {
       // Clear the screen to start fresh if a value was recently calcuated
       if (this.symbol == "=") {
@@ -94,18 +98,17 @@ export default {
       this.print += value;
     },
     
+    // Empties the shown screen and clears the stored value
     clearScreen: function() {
       this.print = "";
     },
     
+    // Deletes the last digit.
     deleteDigit: function() {
-      // Deletes the last digit.
       this.print = this.print.slice(0, this.print.length - 1);
-
-      // TODO: 
-      // Allow the ability to remove the last inputed symbol and retain the value (use xValue)
     },
     
+    // Swaps between positive and negative values.
     invert: function() {
       if (this.print.slice(0,1) == "-") {
         this.print = this.print.slice(1, this.print.length);
@@ -115,6 +118,7 @@ export default {
       }
     },
 
+    // Given an action, stores the previous value in xValue and the symbol for calculation
     storeInitialData: function(value) {
       if (this.print != "") {
         this.xValue = Number(this.print);
@@ -123,6 +127,7 @@ export default {
       this.clearScreen();
     },
 
+    // Calculates the resultant function when '=' is called using the stored xValue and symbol
     calculateResult: function() {
       this.yValue = Number(this.print);
       if (this.symbol == "+") {
@@ -142,6 +147,7 @@ export default {
       this.symbol = "=";
     },
 
+    // Flashes the screen white and grey. Used when too many digits are entered
     flash: function() {
       this.screenColor = "grey";
       setTimeout(function() {
